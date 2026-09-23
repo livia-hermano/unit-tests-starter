@@ -1,31 +1,31 @@
 const ProdutoService = require("../services/ProdutoService")
 
-describe("ProdutoService - Testes unitários com Mocks", ()=>{
+describe("ProdutoService - Testes unitários com Mocks", () => {
     let service
     let mockRepository
 
-    beforeEach(()=>{
+    beforeEach(() => {
         mockRepository = {
             findAll: jest.fn(),
             findById: jest.fn(),
             create: jest.fn(),
             delete: jest.fn()
-        }
+        };
 
         service = new ProdutoService(mockRepository)
+    }) 
+
+    describe('Listar', () => {
+        test('chama repository.findAll uma vez e retorna o resultado', () => {
+            const produtos = [{ id: 1, nome: "Coxinha", preco: 5 }];
+            mockRepository.findAll.mockReturnValue(produtos);
+
+            const resultado = service.listar();
+
+            expect(mockRepository.findAll).toHaveBeenCalledTimes(1);
+            expect(resultado).toEqual(produtos);
+        })
     })
-})
+}) 
 
-describe('Listar', ()=>{
-    TextDecoderStream('chama repository.findAll uma vez e retorna o resultado', ()=>{
-        const produtos = [{id: 1, nome:"Coxinha", preco: 5}];
-        mockRepository.findAll.mockReturnValue(produtos);
-
-        const resultado = service.listar();
-
-        expect(mockRepository.findAll).toHaveBeenCalledTimes(1);
-        expect(resultado).toEqual(produtos);
-    })
-
-    //criar caso de teste para "buscar por id"
-})
+// criar buscar por ID

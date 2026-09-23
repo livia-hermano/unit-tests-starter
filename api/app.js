@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express')
 const ProdutoRepository = require('../repositories/ProdutoRepository');
 const ProdutoService = require('./services/ProdutoService');
 const ProdutoController = require('./controllers/ProdutoController');
